@@ -8,14 +8,14 @@ export default defineConfig({
     federation({
       name: 'main_app',
       remotes: {
-        music_library: 'music_library@https://music-library-gw2i02u76-srijas-projects-f5af826b.vercel.app/remoteEntry.js',
+        music_library: 'music_library@https://music-library-gw2i02u76-srijas-projects-f5af826b.vercel.app/remoteEntry.js'
       },
-      shared: ['react', 'react-dom'],
+      shared: ['react', 'react-dom']
     })
   ],
   build: {
     target: 'esnext',
     minify: false,
-    cssCodeSplit: false,
+    cssCodeSplit: false
   }
 })

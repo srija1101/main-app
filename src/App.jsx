@@ -1,21 +1,27 @@
-import React, { useState, useEffect, Suspense } from 'react';
-const Library = React.lazy(() => import('music_library/Library'));
+import React, { useState, useEffect, Suspense } from 'react'
+
+const Library = React.lazy(() => import('music_library/Library'))
 
 function App() {
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState(null)
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('jwt')
     if (token) {
-      const parsed = JSON.parse(atob(token));
-      setRole(parsed.role);
+      try {
+        const parsed = JSON.parse(atob(token))
+        setRole(parsed.role)
+      } catch (err) {
+        console.error('Invalid token', err)
+        localStorage.removeItem('jwt')
+      }
     }
-  }, []);
+  }, [])
 
   const logout = () => {
-    localStorage.removeItem('jwt');
-    setRole(null);
-  };
+    localStorage.removeItem('jwt')
+    setRole(null)
+  }
 
   return (
     <div style={{ fontFamily: 'Segoe UI', textAlign: 'center', padding: '30px' }}>
@@ -34,15 +40,15 @@ function App() {
         </>
       )}
     </div>
-  );
+  )
 }
 
 function Login() {
   const handleLogin = (role) => {
-    const token = btoa(JSON.stringify({ role }));
-    localStorage.setItem('jwt', token);
-    window.location.reload();
-  };
+    const token = btoa(JSON.stringify({ role }))
+    localStorage.setItem('jwt', token)
+    window.location.reload()
+  }
 
   return (
     <>
@@ -54,8 +60,9 @@ function Login() {
         <button onClick={() => handleLogin('user')} style={loginBtnStyle}>Login as User</button>
       </div>
     </>
-  );
+  )
 }
+
 const loginBtnStyle = {
   padding: '10px 20px',
   fontSize: '16px',
@@ -65,7 +72,7 @@ const loginBtnStyle = {
   backgroundColor: '#1db954',
   color: 'black',
   cursor: 'pointer'
-};
+}
 
 const logoutBtnStyle = {
   padding: '8px 16px',
@@ -75,6 +82,6 @@ const logoutBtnStyle = {
   borderRadius: '8px',
   cursor: 'pointer',
   fontSize: '14px'
-};
+}
 
-export default App;
+export default App
