@@ -56,8 +56,6 @@ function Login() {
     </>
   );
 }
-
-// Button styling
 const loginBtnStyle = {
   padding: '10px 20px',
   fontSize: '16px',
