@@ -1,12 +1,25 @@
-# React + Vite
+Micro frontend is like breaking a big web app into smaller pieces. Each small part (called a micro frontend) can be built and deployed separately.
+In our case:
+The Main App is like the main container.
+The Music Library is a separate app that the main app loads when needed.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+We used Module Federation from Webpack, but here via Vite plugin to connect them. So the main app pulls the music library from a URL dynamically at runtime.
 
-Currently, two official plugins are available:
+In this project, we don't use any real login system. We just made a simple mock setup:
+There are two buttons: Login as Admin and Login as User.
+If it's admin we show extra features like Add Song, Delete Song.
+If it's user can only view and group the songs.
+So basically, the UI changes depending on the role, even though there's no backend 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run both:
+Open both folders separately in terminal and run:
+npm install
+npm run dev
+Make sure both are running on different ports and then open main-app in browser
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+I used Vercel to deploy both apps.
+Pushed code to GitHub.
+Logged into Vercel with GitHub.
+Imported both repositories seperetly
+Added remote url in main-app
+Now main-app loads music-library dynamically using module federation.
