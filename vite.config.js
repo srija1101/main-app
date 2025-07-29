@@ -6,9 +6,8 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'main_app',
       remotes: {
-        music_library: 'music_library@https://music-library-67ld7mi48-srijas-projects-f5af826b.vercel.app/remoteEntry.js'
+        music_library: 'music_library@https://music-library-omvusitfn-srijas-projects-f5af826b.vercel.app/remoteEntry.js'
       },
       shared: ['react', 'react-dom']
     })
